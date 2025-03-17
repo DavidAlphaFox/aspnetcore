@@ -333,7 +333,7 @@ public class CookieAuthenticationHandler : SignInAuthenticationHandler<CookieAut
         }
 
         var ticket = new AuthenticationTicket(signInContext.Principal!, signInContext.Properties, signInContext.Scheme.Name);
-
+        // 当SessionStore不为空的情况下，会只使用session ID
         if (Options.SessionStore != null)
         {
             if (_sessionKey != null)
