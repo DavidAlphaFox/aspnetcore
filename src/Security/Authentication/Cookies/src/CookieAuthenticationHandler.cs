@@ -16,7 +16,7 @@ namespace Microsoft.AspNetCore.Authentication.Cookies;
 /// Implementation for the cookie-based authentication handler.
 /// </summary>
 public class CookieAuthenticationHandler : SignInAuthenticationHandler<CookieAuthenticationOptions>
-{
+{   //Cookie实现的认证handler
     // This should be kept in sync with HttpConnectionDispatcher
     private const string HeaderValueNoCache = "no-cache";
     private const string HeaderValueNoCacheNoStore = "no-cache,no-store";
@@ -289,7 +289,7 @@ public class CookieAuthenticationHandler : SignInAuthenticationHandler<CookieAut
 
     /// <inheritdoc />
     protected override async Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)
-    {
+    { //使用Cookie进行登录处理
         ArgumentNullException.ThrowIfNull(user);
 
         properties = properties ?? new AuthenticationProperties();
@@ -299,7 +299,7 @@ public class CookieAuthenticationHandler : SignInAuthenticationHandler<CookieAut
         // Process the request cookie to initialize members like _sessionKey.
         await EnsureCookieTicket();
         var cookieOptions = BuildCookieOptions();
-
+        // 创建登录上下文
         var signInContext = new CookieSigningInContext(
             Context,
             Scheme,
@@ -352,7 +352,7 @@ public class CookieAuthenticationHandler : SignInAuthenticationHandler<CookieAut
                     Options.ClaimsIssuer));
             ticket = new AuthenticationTicket(principal, null, Scheme.Name);
         }
-
+        // 如果存在session的情况下ticket的内容只有_sessionKey
         var cookieValue = Options.TicketDataFormat.Protect(ticket, GetTlsTokenBinding());
 
         Options.CookieManager.AppendResponseCookie(

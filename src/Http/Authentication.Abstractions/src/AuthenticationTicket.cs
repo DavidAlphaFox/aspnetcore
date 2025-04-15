@@ -17,7 +17,7 @@ public class AuthenticationTicket
     /// <param name="properties">additional properties that can be consumed by the user or runtime.</param>
     /// <param name="authenticationScheme">the authentication scheme that was responsible for this ticket.</param>
     public AuthenticationTicket(ClaimsPrincipal principal, AuthenticationProperties? properties, string authenticationScheme)
-    {
+    { //认证票据
         ArgumentNullException.ThrowIfNull(principal);
 
         AuthenticationScheme = authenticationScheme;

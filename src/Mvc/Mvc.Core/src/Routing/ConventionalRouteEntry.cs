@@ -16,7 +16,7 @@ internal readonly struct ConventionalRouteEntry
     public readonly int Order;
     public readonly IReadOnlyList<Action<EndpointBuilder>> Conventions;
     public readonly IReadOnlyList<Action<EndpointBuilder>> FinallyConventions;
-
+    //路由实例
     public ConventionalRouteEntry(
         string routeName,
         string pattern,
