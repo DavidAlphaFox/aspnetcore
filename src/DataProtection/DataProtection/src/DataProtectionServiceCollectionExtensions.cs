@@ -32,7 +32,7 @@ public static class DataProtectionServiceCollectionExtensions
     public static IDataProtectionBuilder AddDataProtection(this IServiceCollection services)
     {
         ArgumentNullThrowHelper.ThrowIfNull(services);
-
+        //添加数据保护服务
         services.TryAddSingleton<IActivator, TypeForwardingActivator>();
         services.AddOptions();
         AddDataProtectionServices(services);

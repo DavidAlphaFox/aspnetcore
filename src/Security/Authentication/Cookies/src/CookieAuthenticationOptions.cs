@@ -107,7 +107,7 @@ public class CookieAuthenticationOptions : AuthenticationSchemeOptions
     /// cookie value. If not provided one will be created using <see cref="DataProtectionProvider"/>.
     /// </summary>
     public ISecureDataFormat<AuthenticationTicket> TicketDataFormat { get; set; } = default!;
-
+    //Cookie会使用SecureDataFormat来实现内容的安全保密
     /// <summary>
     /// The component used to get cookies from the request or set them on the response.
     ///

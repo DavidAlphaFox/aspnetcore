@@ -33,7 +33,7 @@ public class SecureDataFormat<TData> : ISecureDataFormat<TData>
 
     /// <inheritdoc />
     public string Protect(TData data, string? purpose)
-    {
+    {   //对数据进行序列化
         var userData = _serializer.Serialize(data);
 
         var protector = _protector;
@@ -41,7 +41,7 @@ public class SecureDataFormat<TData> : ISecureDataFormat<TData>
         {
             protector = protector.CreateProtector(purpose);
         }
-
+        //使用保护算法，对数据进行保护
         var protectedData = protector.Protect(userData);
         return Base64UrlTextEncoder.Encode(protectedData);
     }

@@ -22,7 +22,7 @@ public static class SessionServiceCollectionExtensions
     public static IServiceCollection AddSession(this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(services);
-
+        //使用Session的时候，会增加DistributedSessionStore作为存储
         services.TryAddTransient<ISessionStore, DistributedSessionStore>();
         services.AddDataProtection();
         return services;
